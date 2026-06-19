@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Olimpiadas Escolares · Inscripciones</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;500;600;700;800&family=Roboto+Mono:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="track-stripe" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="brand">
+        <span class="brand-mark">JO</span>
+        <span class="brand-text">Juegos Olímpicos Escolares</span>
+      </div>
+      <div class="header-status" id="header-status">
+        <span class="status-dot"></span>
+        <span id="header-status-text">Conectando...</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="wizard-stage">
+
+    <!-- ============ PASO 0: BIENVENIDA ============ -->
+    <section class="panel panel--welcome is-active" id="panel-bienvenida">
+      <p class="panel-eyebrow">Inscripciones abiertas</p>
+      <h1 class="panel-title">Inscribe a tu<br><span class="panel-title-accent">hijo o hija.</span></h1>
+      <p class="panel-sub">Puedes inscribir hasta 6 participantes en una sola sesión. Cada uno puede elegir hasta 2 deportes.</p>
+      <button type="button" class="btn btn-primary btn-big" id="btn-comenzar">Comenzar inscripción</button>
+    </section>
+
+    <!-- ============ PASO 1..6: TARJETA DE PARTICIPANTE ============ -->
+    <section class="panel panel--form" id="panel-formulario">
+      <div class="panel-progress">
+        <span class="panel-progress-label" id="progress-label">Participante 1 de 6</span>
+        <div class="panel-progress-dots" id="progress-dots" aria-hidden="true"></div>
+      </div>
+
+      <h2 class="panel-form-title" id="form-title">Datos del participante</h2>
+
+      <form class="participant-form" id="form-participante" novalidate>
+        <div class="form-row">
+          <label for="input-nombre">Nombre completo</label>
+          <input type="text" id="input-nombre" placeholder="Nombre y apellido del estudiante" required autocomplete="off">
+        </div>
+
+        <div class="form-row">
+          <label for="input-telefono">Teléfono del padre/madre</label>
+          <input type="tel" id="input-telefono" placeholder="987 654 321" required autocomplete="off" inputmode="tel">
+        </div>
+
+        <div class="form-row">
+          <div class="form-row-label-line">
+            <label>Deportes</label>
+            <span class="form-row-hint">Elige 1 o 2</span>
+          </div>
+          <div class="sport-grid" id="sport-grid"><!-- tarjetas de deporte inyectadas por JS --></div>
+        </div>
+
+        <p class="form-error" id="form-error" role="alert"></p>
+
+        <div class="form-actions">
+          <button type="button" class="btn btn-ghost" id="btn-cancelar">Cancelar</button>
+          <button type="submit" class="btn btn-primary btn-big" id="btn-siguiente">
+            <span id="btn-siguiente-text">Siguiente</span>
+          </button>
+        </div>
+      </form>
+
+      <ul class="added-list" id="added-list" aria-label="Participantes agregados"></ul>
+    </section>
+
+    <!-- ============ PASO FINAL: CONFIRMACIÓN ============ -->
+    <section class="panel panel--success" id="panel-exito">
+      <div class="success-badge" aria-hidden="true">&#10003;</div>
+      <h2 class="panel-title panel-title--success">¡Inscripción registrada!</h2>
+      <p class="panel-sub" id="exito-resumen">Se inscribieron correctamente.</p>
+      <button type="button" class="btn btn-primary btn-big" id="btn-nueva-inscripcion">Inscribir a otra familia</button>
+    </section>
+
+  </main>
+
+  <div class="toast" id="toast" role="alert" aria-live="assertive"></div>
+
+  <footer class="site-footer">
+    <p>Juegos Olímpicos Escolares · Cupos actualizados en vivo</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

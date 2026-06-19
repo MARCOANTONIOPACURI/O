@@ -1,0 +1,592 @@
+/* ===================================================================
+   OLIMPIADAS ESCOLARES — DESIGN TOKENS
+   =================================================================== */
+:root {
+  --navy: #0B1E3D;
+  --navy-deep: #061328;
+  --orange: #FF5A1F;
+  --orange-light: #FF8552;
+  --gold: #FFC93C;
+  --ice: #F4F6FA;
+  --ice-dim: #DCE2EC;
+  --green: #1FAD66;
+  --green-light: #E5F7EE;
+  --red: #E8453C;
+  --red-light: #FCEAE9;
+  --amber: #E8A33C;
+  --amber-light: #FDF1E0;
+  --ink: #10182B;
+  --ink-soft: #4A5570;
+
+  --font-display: 'Archivo Black', 'Arial Black', sans-serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'Roboto Mono', 'Courier New', monospace;
+
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 22px;
+  --shadow-card: 0 6px 24px rgba(11, 30, 61, 0.10);
+  --shadow-lift: 0 14px 40px rgba(11, 30, 61, 0.18);
+}
+
+* { box-sizing: border-box; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+html, body { height: 100%; }
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  color: var(--ink);
+  background: var(--ice);
+  -webkit-font-smoothing: antialiased;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+a { color: inherit; }
+
+/* ===================================================================
+   TRACK STRIPE
+   =================================================================== */
+.track-stripe {
+  height: 6px;
+  width: 100%;
+  flex-shrink: 0;
+  background: repeating-linear-gradient(90deg, var(--orange) 0 48px, var(--gold) 48px 96px);
+}
+
+/* ===================================================================
+   HEADER
+   =================================================================== */
+.site-header {
+  background: var(--navy);
+  color: var(--ice);
+  padding: 14px 20px;
+  flex-shrink: 0;
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  flex-wrap: wrap;
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.brand { display: flex; align-items: center; gap: 10px; }
+
+.brand-mark {
+  font-family: var(--font-display);
+  font-size: 0.9rem;
+  background: var(--orange);
+  color: var(--navy-deep);
+  padding: 7px 9px;
+  border-radius: var(--radius-sm);
+}
+
+.brand-text { font-weight: 700; font-size: 0.88rem; }
+
+.header-status {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--ice-dim);
+  background: rgba(255,255,255,0.06);
+  padding: 5px 11px;
+  border-radius: 999px;
+}
+
+.status-dot {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: var(--amber);
+  animation: pulse-dot 1.6s ease-in-out infinite;
+  flex-shrink: 0;
+}
+
+.status-dot.is-live { background: var(--green); }
+.status-dot.is-error { background: var(--red); animation: none; }
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(0.85); }
+}
+
+/* ===================================================================
+   WIZARD STAGE — contenedor central tipo kiosco
+   =================================================================== */
+.wizard-stage {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 28px 18px 40px;
+  background: radial-gradient(120% 100% at 50% 0%, #11254E 0%, var(--navy) 38%, var(--navy-deep) 100%);
+  position: relative;
+}
+
+.panel {
+  display: none;
+  width: 100%;
+  max-width: 560px;
+  background: #fff;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lift);
+  padding: 40px 36px;
+  animation: panel-in 0.35s ease;
+}
+
+.panel.is-active { display: block; }
+
+@keyframes panel-in {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ===================================================================
+   PANEL: BIENVENIDA
+   =================================================================== */
+.panel--welcome {
+  text-align: center;
+  background: linear-gradient(160deg, #ffffff 0%, var(--ice) 100%);
+}
+
+.panel-eyebrow {
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 0.74rem;
+  color: var(--orange);
+  margin: 0 0 16px;
+}
+
+.panel-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.9rem, 6vw, 2.5rem);
+  line-height: 1.08;
+  margin: 0 0 18px;
+  color: var(--navy-deep);
+  letter-spacing: -0.01em;
+}
+
+.panel-title-accent { color: var(--orange); }
+
+.panel-sub {
+  font-size: 1rem;
+  line-height: 1.55;
+  color: var(--ink-soft);
+  margin: 0 0 32px;
+}
+
+.panel--welcome .panel-sub { max-width: 380px; margin-left: auto; margin-right: auto; }
+
+/* ===================================================================
+   BUTTONS
+   =================================================================== */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px 26px;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  text-decoration: none;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease, opacity 0.15s ease;
+  font-family: var(--font-body);
+}
+
+.btn-primary {
+  background: var(--orange);
+  color: #fff;
+  box-shadow: 0 8px 22px rgba(255, 90, 31, 0.32);
+}
+
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 28px rgba(255, 90, 31, 0.42); }
+
+.btn-ghost {
+  background: transparent;
+  color: var(--ink-soft);
+  border-color: var(--ice-dim);
+}
+
+.btn-ghost:hover { border-color: var(--ink-soft); color: var(--ink); }
+
+.btn-big { width: 100%; padding: 16px 26px; font-size: 1rem; }
+
+.btn:focus-visible { outline: 3px solid var(--gold); outline-offset: 2px; }
+
+.btn:disabled { opacity: 0.55; cursor: not-allowed; transform: none !important; }
+
+/* ===================================================================
+   PANEL: FORMULARIO
+   =================================================================== */
+.panel-progress {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 22px;
+}
+
+.panel-progress-label {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--orange);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.panel-progress-dots {
+  display: flex;
+  gap: 6px;
+}
+
+.panel-progress-dots .dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--ice-dim);
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.panel-progress-dots .dot.is-done { background: var(--green); }
+.panel-progress-dots .dot.is-current { background: var(--orange); transform: scale(1.25); }
+
+.panel-form-title {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  color: var(--navy-deep);
+  margin: 0 0 22px;
+}
+
+.participant-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.form-row { display: flex; flex-direction: column; gap: 7px; }
+
+.form-row-label-line {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+.form-row-hint {
+  font-size: 0.78rem;
+  color: var(--ink-soft);
+  font-family: var(--font-mono);
+}
+
+label { font-size: 0.84rem; font-weight: 600; color: var(--navy-deep); }
+
+input[type="text"], input[type="tel"] {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  padding: 14px 16px;
+  border-radius: var(--radius-sm);
+  border: 1.5px solid var(--ice-dim);
+  background: var(--ice);
+  color: var(--ink);
+  transition: border-color 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+}
+
+input:focus {
+  outline: none;
+  border-color: var(--orange);
+  background: #fff;
+  box-shadow: 0 0 0 4px rgba(255, 90, 31, 0.12);
+}
+
+input:focus-visible { outline: 3px solid var(--gold); outline-offset: 1px; }
+
+/* ===================================================================
+   SPORT GRID — tarjetas de deporte seleccionables (estilo principal)
+   =================================================================== */
+.sport-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.sport-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 14px 14px 12px;
+  border-radius: var(--radius-md);
+  border: 2px solid var(--ice-dim);
+  background: var(--ice);
+  cursor: pointer;
+  transition: border-color 0.15s ease, background 0.15s ease, transform 0.1s ease;
+  text-align: left;
+}
+
+.sport-card:hover { border-color: var(--orange-light); }
+
+.sport-card:active { transform: scale(0.98); }
+
+.sport-card.is-selected {
+  border-color: var(--orange);
+  background: #FFF4EE;
+}
+
+.sport-card.is-full {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.sport-card.is-full:hover { border-color: var(--ice-dim); }
+
+.sport-card-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.sport-card-name {
+  font-weight: 700;
+  font-size: 0.88rem;
+  color: var(--navy-deep);
+  line-height: 1.25;
+}
+
+.sport-card-check {
+  width: 20px;
+  height: 20px;
+  border-radius: 6px;
+  border: 2px solid var(--ice-dim);
+  background: #fff;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+  color: #fff;
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+.sport-card.is-selected .sport-card-check {
+  background: var(--orange);
+  border-color: var(--orange);
+}
+
+.sport-card.is-selected .sport-card-check::after { content: '✓'; }
+
+/* Barra de cupos al costado/abajo del deporte: solo inscritos/máximo */
+.sport-card-quota {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.sport-card-bar {
+  flex: 1;
+  height: 6px;
+  border-radius: 999px;
+  background: var(--ice-dim);
+  overflow: hidden;
+}
+
+.sport-card-bar-fill {
+  height: 100%;
+  border-radius: 999px;
+  background: var(--green);
+  transition: width 0.4s ease, background 0.3s ease;
+}
+
+.sport-card.is-warning .sport-card-bar-fill { background: var(--amber); }
+.sport-card.is-full .sport-card-bar-fill { background: var(--red); }
+
+.sport-card-count {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--ink-soft);
+  white-space: nowrap;
+}
+
+.sport-card.is-full .sport-card-count { color: var(--red); }
+
+@media (max-width: 420px) {
+  .sport-grid { grid-template-columns: 1fr; }
+}
+
+/* ===================================================================
+   FORM ERROR / ACTIONS
+   =================================================================== */
+.form-error {
+  margin: 0;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--red);
+  background: var(--red-light);
+  padding: 11px 14px;
+  border-radius: var(--radius-sm);
+  display: none;
+}
+
+.form-error.is-visible { display: block; }
+
+.form-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.form-actions .btn-ghost { flex: 0 0 auto; padding-left: 18px; padding-right: 18px; }
+.form-actions .btn-primary { flex: 1; }
+
+/* ===================================================================
+   ADDED LIST — participantes ya agregados en esta sesión
+   =================================================================== */
+.added-list {
+  list-style: none;
+  margin: 26px 0 0;
+  padding: 18px 0 0;
+  border-top: 1px dashed var(--ice-dim);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.added-list:empty { display: none; }
+
+.added-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  background: var(--ice);
+  border-radius: var(--radius-sm);
+  padding: 10px 14px;
+}
+
+.added-item-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.added-item-name {
+  font-weight: 700;
+  font-size: 0.88rem;
+  color: var(--navy-deep);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.added-item-sports {
+  font-size: 0.76rem;
+  color: var(--ink-soft);
+  font-family: var(--font-mono);
+}
+
+.added-item-remove {
+  border: none;
+  background: transparent;
+  color: var(--ink-soft);
+  font-size: 1.1rem;
+  cursor: pointer;
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.added-item-remove:hover { background: var(--red-light); color: var(--red); }
+
+/* ===================================================================
+   PANEL: ÉXITO
+   =================================================================== */
+.panel--success { text-align: center; }
+
+.success-badge {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: var(--green-light);
+  color: var(--green);
+  font-size: 1.8rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 22px;
+}
+
+.panel-title--success { font-size: clamp(1.5rem, 5vw, 1.9rem); }
+
+/* ===================================================================
+   TOAST
+   =================================================================== */
+.toast {
+  position: fixed;
+  bottom: 22px;
+  left: 50%;
+  transform: translateX(-50%) translateY(20px);
+  background: var(--navy-deep);
+  color: #fff;
+  padding: 13px 22px;
+  border-radius: 999px;
+  font-size: 0.86rem;
+  font-weight: 600;
+  box-shadow: var(--shadow-lift);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+  z-index: 200;
+  max-width: 90vw;
+  text-align: center;
+}
+
+.toast.is-visible { opacity: 1; transform: translateX(-50%) translateY(0); }
+.toast.is-error { background: var(--red); }
+.toast.is-success { background: var(--green); }
+
+/* ===================================================================
+   FOOTER
+   =================================================================== */
+.site-footer {
+  background: var(--navy-deep);
+  color: var(--ice-dim);
+  padding: 16px;
+  font-size: 0.78rem;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+/* ===================================================================
+   RESPONSIVE
+   =================================================================== */
+@media (max-width: 640px) {
+  .wizard-stage { padding: 18px 14px 28px; align-items: flex-start; }
+  .panel { padding: 28px 22px; border-radius: var(--radius-md); }
+  .form-actions { flex-direction: column-reverse; }
+  .form-actions .btn-ghost { width: 100%; }
+}
